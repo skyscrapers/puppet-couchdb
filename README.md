@@ -1,5 +1,5 @@
-puppet-bacula
-=============
+puppet-couchdb
+==============
 
 Install and configure couchdb with Puppet
 
