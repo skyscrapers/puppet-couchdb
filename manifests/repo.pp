@@ -23,13 +23,14 @@ class couchdb::repo {
   if !defined(Class['apt']) {
     class { 'apt': }
   }
-
-  apt::source { 'precise-couchdb':
-    location    => 'http://skypackages.s3-website-eu-west-1.amazonaws.com/ubuntu/',
-    release     => 'precise-couchdb',
-    repos       => 'main',
-    key         => '1BC1B9EF',
-    key_source  => 'http://skypackages.s3-website-eu-west-1.amazonaws.com/gpg.key',
-    include_src => false,
+  if ($::lsbdistcodename == 'precise'){
+    apt::source { 'precise-couchdb':
+      location    => 'http://skypackages.s3-website-eu-west-1.amazonaws.com/ubuntu/',
+      release     => 'precise-couchdb',
+      repos       => 'main',
+      key         => '1BC1B9EF',
+      key_source  => 'http://skypackages.s3-website-eu-west-1.amazonaws.com/gpg.key',
+      include_src => false,
+    }
   }
 }
