@@ -20,16 +20,17 @@
 # This class is called from couchdb
 #
 class couchdb::config {
-  file {
-    '/etc/couchdb/local.d/custom.ini':
-      ensure => file,
-      content => template ('couchdb/etc/couchdb/local.d/custom.ini.erb'),
-      mode   => '0644',
-      owner  => couchdb,
-      group  => couchdb,
-      notify => Service['couchdb'];
+  if $default_config {
+    file {
+      '/etc/couchdb/local.d/custom.ini':
+        ensure => file,
+        content => template ('couchdb/etc/couchdb/local.d/custom.ini.erb'),
+        mode   => '0644',
+        owner  => couchdb,
+        group  => couchdb,
+        notify => Service['couchdb'];
+    }
   }
-
   if $couchdb::admin_password != undef {
       exec { 'Set admin account':
         command   => "curl -X PUT http://127.0.0.1:5984/_config/admins/${couchdb::admin_username} -d \'\"${couchdb::admin_password}\"\'",

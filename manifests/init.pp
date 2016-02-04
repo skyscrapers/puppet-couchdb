@@ -34,6 +34,7 @@
 #
 class couchdb(
   $bind_address       = $couchdb::params::bind_address,
+  $default_config     = $couchdb::params::default_config,
   $admin_username     = undef,
   $admin_password     = undef
   ) inherits couchdb::params {

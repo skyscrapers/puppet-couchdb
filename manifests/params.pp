@@ -21,5 +21,6 @@
 # It sets variables according to platform
 #
 class couchdb::params {
-  $bind_address = '127.0.0.1'
+  $bind_address = '127.0.0.1',
+  $default_config = true
 }
