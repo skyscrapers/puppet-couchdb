@@ -20,7 +20,7 @@
 # This class is called from couchdb
 #
 class couchdb::config {
-  if $default_config {
+  if $couchdb::default_config {
     file {
       '/etc/couchdb/local.d/custom.ini':
         ensure => file,
